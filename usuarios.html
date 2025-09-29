@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="usuarios-style.css">
     <title>Usuários</title>
 </head>
 <body>
+
+    <button class="btn-voltar" onclick="voltar()">Voltar para Cadastro</button>
 <!--Agora vamos criar uma tabela -->
     <h2>Lista de usuarios</h2>
 <!--- Essa é a estrutura para criarmos uma tabela-->
@@ -63,6 +66,39 @@
             .then(() => carregarUsuarios())
         }
         
+        function editar(idUsuario){
+            let novoNome = prompt("Digite o novo nome")
+            let nomeEmail = prompt("Digite o novo email")
+            let novaSenha = prompt("Digite a nova senha")
+
+            if(novoNome.length < 1){
+                alert("Nome não pode estar vazio")
+            }
+
+            if(novoEmail.length < 1){
+                alert("Email não pode estar vazio")
+            }
+
+            if(novaSenha.length < 1){
+                alert("Senha não pode estar vazio")
+                return
+            }
+        }
+
+        fetch(`http://localhost:3000/usuarios/${idUsuarios}`,
+        {
+            method: 'PUT',
+            headers: {
+                'Context-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nome:novoNome,
+                novoEmail,
+                novaSenha
+            })
+        })
+        .then(() => carregarUsuarios)
+    
         window.onload = carregarUsuarios
     </script>
 </body>

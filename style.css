@@ -43,3 +43,8 @@ button{
 .btn-cadastrar:hover{
     background: green;
 }
+
+.btn-lista{
+    background-color: #7fb3ee;
+    border: solid 1px;
+}
